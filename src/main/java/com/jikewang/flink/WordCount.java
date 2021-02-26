@@ -2,7 +2,9 @@ package com.jikewang.flink;
 
 import com.jikewang.data.WordCountData;
 import org.apache.flink.api.common.functions.FlatMapFunction;
+import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
+import org.apache.flink.api.java.operators.AggregateOperator;
 import org.apache.flink.api.java.operators.DataSource;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.java.utils.MultipleParameterTool;
@@ -54,15 +56,12 @@ public class WordCount {
     public static void Demo2() throws Exception {
         ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
 
-        DataSource<String> dataSource = env.fromElements(
+        DataSet<String> dataSource = env.fromElements(
                 "Who's there?",
                 "I think I hear them. Stand, ho! Who's there?");
-
                 // 把每一行文本切割成二元组，每个二元组为: (word,1)
-                dataSource.flatMap(new Tokenizer())
-                        // 根据二元组的第“0”位分组，然后对第“1”位求和
-                        .groupBy(0)
-                        .sum(1).print();
+        DataSet<Tuple2<String, Integer>> sum = dataSource.flatMap(new Tokenizer()).groupBy(0).sum(1);
+        sum.print();
     }
     public static void main(String[] args) throws Exception {
 //        Demo1(args);

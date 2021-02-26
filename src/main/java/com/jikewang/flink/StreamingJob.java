@@ -43,7 +43,7 @@ public class StreamingJob {
 		// set up the streaming execution environment
 		final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-		DataStreamSource<String> socketTextStream = env.socketTextStream("127.0.0.1", 8083, "\n");
+		DataStreamSource<String> socketTextStream = env.socketTextStream("bigdata01", 8083, "\n");
 		DataStream<WordWithCount> wordCount = socketTextStream.flatMap(new FlatMapFunction<String, WordWithCount>() {
 			@Override
 			public void flatMap(String value, Collector<WordWithCount> collector) throws Exception {
