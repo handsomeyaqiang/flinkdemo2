@@ -23,7 +23,7 @@ import org.apache.flink.util.Preconditions;
  * @Version: 1.0
  */
 public class WordCount {
-    public static void Demo1(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
         final MultipleParameterTool params = MultipleParameterTool.fromArgs(args);
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.getConfig().setGlobalJobParameters(params);
@@ -53,20 +53,6 @@ public class WordCount {
         }
         env.execute("Streaming WordCount");
     }
-    public static void Demo2() throws Exception {
-        ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
-
-        DataSet<String> dataSource = env.fromElements(
-                "Who's there?",
-                "I think I hear them. Stand, ho! Who's there?");
-                // 把每一行文本切割成二元组，每个二元组为: (word,1)
-        DataSet<Tuple2<String, Integer>> sum = dataSource.flatMap(new Tokenizer()).groupBy(0).sum(1);
-        sum.print();
-    }
-    public static void main(String[] args) throws Exception {
-//        Demo1(args);
-        Demo2();
-    }
 
     public static final class Tokenizer implements FlatMapFunction<String, Tuple2<String, Integer>> {
         @Override
@@ -76,16 +62,6 @@ public class WordCount {
                 if (token.length() > 0){
                     out.collect(new Tuple2<>(token, 1));
                 }
-            }
-        }
-    }
-
-    private static class MyFlatMapper implements FlatMapFunction<String, Tuple2<String, Integer>>{
-        @Override
-        public void flatMap(String value, Collector<Tuple2<String, Integer>> collector) throws Exception {
-            String[] split = value.split(" ");
-            for (String s : split){
-                collector.collect(new Tuple2<>(s, 1));
             }
         }
     }

@@ -18,7 +18,11 @@
 
 package com.jikewang.flink;
 
+import org.apache.flink.api.common.functions.FlatMapFunction;
+import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
+import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.util.Collector;
 
 /**
  * Skeleton for a Flink Batch Job.
@@ -36,31 +40,11 @@ public class BatchJob {
 		// set up the batch execution environment
 		final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
 
-		/*
-		 * Here, you can start creating your execution plan for Flink.
-		 *
-		 * Start with getting some data from the environment, like
-		 * 	env.readTextFile(textPath);
-		 *
-		 * then, transform the resulting DataSet<String> using operations
-		 * like
-		 * 	.filter()
-		 * 	.flatMap()
-		 * 	.join()
-		 * 	.coGroup()
-		 *
-		 * and many more.
-		 * Have a look at the programming guide for the Java API:
-		 *
-		 * https://flink.apache.org/docs/latest/apis/batch/index.html
-		 *
-		 * and the examples
-		 *
-		 * https://flink.apache.org/docs/latest/apis/batch/examples.html
-		 *
-		 */
-
-		// execute program
-		env.execute("Flink Batch Java API Skeleton");
+		DataSet<String> dataSource = env.fromElements(
+				"Who's there?",
+				"I think I hear them. Stand, ho! Who's there?");
+		// 把每一行文本切割成二元组，每个二元组为: (word,1)
+		DataSet<Tuple2<String, Integer>> sum = dataSource.flatMap(new WordCount.Tokenizer()).groupBy(0).sum(1);
+		sum.print();
 	}
 }
