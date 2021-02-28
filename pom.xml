@@ -88,10 +88,30 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
+      <groupId>org.apache.bahir</groupId>
+      <artifactId>flink-connector-redis_${flink.scala.version}</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flink</groupId>
+      <artifactId>flink-connector-elasticsearch6_${flink.scala.version}</artifactId>
+      <version>${flink.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flink</groupId>
+      <artifactId>flink-statebackend-rocksdb_${flink.scala.version}</artifactId>
+      <version>${flink.version}</version>
+    </dependency>
+    <dependency>
       <groupId>org.apache.flink</groupId>
       <artifactId>flink-runtime-web_${flink.scala.version}</artifactId>
       <version>${flink.version}</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flink</groupId>
+      <artifactId>flink-csv</artifactId>
+      <version>${flink.version}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

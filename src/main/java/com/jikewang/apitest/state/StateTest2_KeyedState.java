@@ -8,7 +8,7 @@ package com.jikewang.apitest.state;/**
  * Created by wushengran on 2020/11/10 15:49
  */
 
-import com.atguigu.apitest.beans.SensorReading;
+import com.jikewang.apitest.beans.SensorReading;
 import org.apache.flink.api.common.functions.RichMapFunction;
 import org.apache.flink.api.common.state.*;
 import org.apache.flink.configuration.Configuration;

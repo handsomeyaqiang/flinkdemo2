@@ -8,7 +8,7 @@ package com.jikewang.apitest.transform;/**
  * Created by wushengran on 2020/11/7 15:09
  */
 
-import com.atguigu.apitest.beans.SensorReading;
+import com.jikewang.apitest.beans.SensorReading;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.api.java.tuple.Tuple;
@@ -43,7 +43,7 @@ public class TransformTest2_RollingAggregation {
 //            }
 //        });
 
-        DataStream<SensorReading> dataStream = inputStream.map( line -> {
+        DataStream<SensorReading> dataStream = inputStream.map(line -> {
             String[] fields = line.split(",");
             return new SensorReading(fields[0], new Long(fields[1]), new Double(fields[2]));
         } );

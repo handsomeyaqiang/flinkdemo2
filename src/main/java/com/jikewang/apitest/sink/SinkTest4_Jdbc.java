@@ -8,8 +8,8 @@ package com.jikewang.apitest.sink;/**
  * Created by wushengran on 2020/11/9 11:43
  */
 
-import com.atguigu.apitest.beans.SensorReading;
-import com.atguigu.apitest.source.SourceTest4_UDF;
+import com.jikewang.apitest.beans.SensorReading;
+import com.jikewang.apitest.source.SourceTest4_UDF;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;

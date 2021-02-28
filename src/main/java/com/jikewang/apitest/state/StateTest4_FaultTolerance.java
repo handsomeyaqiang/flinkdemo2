@@ -8,7 +8,7 @@ package com.jikewang.apitest.state;/**
  * Created by wushengran on 2020/11/11 9:30
  */
 
-import com.atguigu.apitest.beans.SensorReading;
+import com.jikewang.apitest.beans.SensorReading;
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
 import org.apache.flink.api.common.time.Time;
 import org.apache.flink.contrib.streaming.state.RocksDBStateBackend;

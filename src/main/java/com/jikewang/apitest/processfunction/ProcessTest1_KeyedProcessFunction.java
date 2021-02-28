@@ -8,7 +8,7 @@ package com.jikewang.apitest.processfunction;/**
  * Created by wushengran on 2020/11/11 10:25
  */
 
-import com.atguigu.apitest.beans.SensorReading;
+import com.jikewang.apitest.beans.SensorReading;
 import org.apache.flink.api.common.state.ValueState;
 import org.apache.flink.api.common.state.ValueStateDescriptor;
 import org.apache.flink.api.java.tuple.Tuple;

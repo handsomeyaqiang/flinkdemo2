@@ -8,7 +8,7 @@ package com.jikewang.apitest.transform;/**
  * Created by wushengran on 2020/11/9 10:14
  */
 
-import com.atguigu.apitest.beans.SensorReading;
+import com.jikewang.apitest.beans.SensorReading;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 

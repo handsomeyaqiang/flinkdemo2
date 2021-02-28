@@ -8,7 +8,7 @@ package com.jikewang.apitest.transform;/**
  * Created by wushengran on 2020/11/9 9:29
  */
 
-import com.atguigu.apitest.beans.SensorReading;
+import com.jikewang.apitest.beans.SensorReading;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.functions.RichMapFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
