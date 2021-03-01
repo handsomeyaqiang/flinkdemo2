@@ -8,7 +8,7 @@ package com.jikewang.apitest.tableapi;/**
  * Created by wushengran on 2020/11/13 15:45
  */
 
-import com.atguigu.apitest.beans.SensorReading;
+import com.jikewang.apitest.beans.SensorReading;
 import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
@@ -18,7 +18,7 @@ import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.table.api.Over;
 import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.Tumble;
-import org.apache.flink.table.api.java.StreamTableEnvironment;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.types.Row;
 
 /**

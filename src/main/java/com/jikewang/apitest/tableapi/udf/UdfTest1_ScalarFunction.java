@@ -8,12 +8,12 @@ package com.jikewang.apitest.tableapi.udf;/**
  * Created by wushengran on 2020/11/14 9:24
  */
 
-import com.atguigu.apitest.beans.SensorReading;
+import com.jikewang.apitest.beans.SensorReading;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.Table;
-import org.apache.flink.table.api.java.StreamTableEnvironment;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.table.functions.ScalarFunction;
 import org.apache.flink.types.Row;
 

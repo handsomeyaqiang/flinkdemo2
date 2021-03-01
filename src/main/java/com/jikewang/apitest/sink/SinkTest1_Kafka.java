@@ -12,8 +12,8 @@ import com.jikewang.apitest.beans.SensorReading;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer011;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer011;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
 
 import java.util.Properties;
 
@@ -39,7 +39,7 @@ public class SinkTest1_Kafka {
         properties.setProperty("auto.offset.reset", "latest");
 
         // 从文件读取数据
-        DataStream<String> inputStream = env.addSource( new FlinkKafkaConsumer011<String>("sensor", new SimpleStringSchema(), properties));
+        DataStream<String> inputStream = env.addSource( new FlinkKafkaConsumer<>("sensor", new SimpleStringSchema(), properties));
 
         // 转换成SensorReading类型
         DataStream<String> dataStream = inputStream.map(line -> {
@@ -47,7 +47,7 @@ public class SinkTest1_Kafka {
             return new SensorReading(fields[0], new Long(fields[1]), new Double(fields[2])).toString();
         });
 
-        dataStream.addSink( new FlinkKafkaProducer011<String>("localhost:9092", "sinktest", new SimpleStringSchema()));
+        dataStream.addSink( new FlinkKafkaProducer<>("localhost:9092", "sinktest", new SimpleStringSchema()));
 
         env.execute();
     }
