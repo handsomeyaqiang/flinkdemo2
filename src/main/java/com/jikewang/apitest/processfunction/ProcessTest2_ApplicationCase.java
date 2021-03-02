@@ -32,6 +32,7 @@ public class ProcessTest2_ApplicationCase {
         // 测试KeyedProcessFunction，先分组然后自定义处理
         dataStream.keyBy("id")
                 .process( new TempConsIncreWarning(10) )
+
                 .print();
 
         env.execute();
@@ -41,14 +42,14 @@ public class ProcessTest2_ApplicationCase {
     public static class TempConsIncreWarning extends KeyedProcessFunction<Tuple, SensorReading, String>{
         // 定义私有属性，当前统计的时间间隔
         private Integer interval;
+        // 定义状态，保存上一次的温度值，定时器时间戳
+        private ValueState<Double> lastTempState;
+        private ValueState<Long> timerTsState;
+
 
         public TempConsIncreWarning(Integer interval) {
             this.interval = interval;
         }
-
-        // 定义状态，保存上一次的温度值，定时器时间戳
-        private ValueState<Double> lastTempState;
-        private ValueState<Long> timerTsState;
 
         @Override
         public void open(Configuration parameters) throws Exception {

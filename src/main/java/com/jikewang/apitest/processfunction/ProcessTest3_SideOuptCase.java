@@ -1,13 +1,4 @@
-package com.jikewang.apitest.processfunction;/**
- * Copyright (c) 2018-2028 尚硅谷 All Rights Reserved
- * <p>
- * Project: FlinkTutorial
- * Package: com.atguigu.apitest.processfunction
- * Version: 1.0
- * <p>
- * Created by wushengran on 2020/11/11 11:32
- */
-
+package com.jikewang.apitest.processfunction;
 import com.jikewang.apitest.beans.SensorReading;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;

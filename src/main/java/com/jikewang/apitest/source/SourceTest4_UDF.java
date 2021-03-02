@@ -1,12 +1,4 @@
-package com.jikewang.apitest.source;/**
- * Copyright (c) 2018-2028 尚硅谷 All Rights Reserved
- * <p>
- * Project: FlinkTutorial
- * Package: com.atguigu.apitest.source
- * Version: 1.0
- * <p>
- * Created by wushengran on 2020/11/7 14:03
- */
+package com.jikewang.apitest.source;
 
 import com.jikewang.apitest.beans.SensorReading;
 import org.apache.flink.streaming.api.datastream.DataStream;

@@ -1,12 +1,4 @@
 package com.jikewang.apitest.source;
-/**
- * Project: FlinkTutorial
- * Package: com.atguigu.apitest.source
- * Version: 1.0
- * <p>
- * Created by wushengran on 2020/11/7 11:33
- */
-
 import com.jikewang.apitest.beans.SensorReading;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;

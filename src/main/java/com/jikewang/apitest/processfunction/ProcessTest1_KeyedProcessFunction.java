@@ -31,7 +31,7 @@ public class ProcessTest1_KeyedProcessFunction {
 
         // 测试KeyedProcessFunction，先分组然后自定义处理
         dataStream.keyBy("id")
-                .process( new MyProcess() )
+                .process( new MyProcess())
                 .print();
 
         env.execute();
