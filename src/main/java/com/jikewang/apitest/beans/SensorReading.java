@@ -1,12 +1,4 @@
-package com.jikewang.apitest.beans;/**
- * Copyright (c) 2018-2028 尚硅谷 All Rights Reserved
- * <p>
- * Project: FlinkTutorial
- * Package: com.atguigu.apitest.beans
- * Version: 1.0
- * <p>
- * Created by wushengran on 2020/11/7 11:34
- */
+package com.jikewang.apitest.beans;
 
 /**
  * @ClassName: SensorReading

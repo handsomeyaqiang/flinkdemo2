@@ -34,7 +34,7 @@ public class TransformTest4_MultipleStreams {
         env.setParallelism(1);
 
         // 从文件读取数据
-        DataStream<String> inputStream = env.readTextFile("D:\\Projects\\BigData\\FlinkTutorial\\src\\main\\resources\\sensor.txt");
+        DataStream<String> inputStream = env.readTextFile("D:\\YouXinProjection\\JavaProjection\\flinkdemo2\\src\\main\\resources\\sensor.txt");
 
         // 转换成SensorReading
         DataStream<SensorReading> dataStream = inputStream.map(line -> {
@@ -67,7 +67,6 @@ public class TransformTest4_MultipleStreams {
         });
 
         ConnectedStreams<Tuple2<String, Double>, SensorReading> connectedStreams = warningStream.connect(lowTempStream);
-
         DataStream<Object> resultStream = connectedStreams.map(new CoMapFunction<Tuple2<String, Double>, SensorReading, Object>() {
             @Override
             public Object map1(Tuple2<String, Double> value) throws Exception {
@@ -79,12 +78,11 @@ public class TransformTest4_MultipleStreams {
                 return new Tuple2<>(value.getId(), "normal");
             }
         });
-
-        resultStream.print();
-
+        resultStream.print("connect");
         // 3. union联合多条流
 //        warningStream.union(lowTempStream);
-        highTempStream.union(lowTempStream, allTempStream);
+        DataStream<SensorReading> unionStreaming = highTempStream.union(lowTempStream, allTempStream);
+        unionStreaming.print("unionStreaming");
 
         env.execute();
     }

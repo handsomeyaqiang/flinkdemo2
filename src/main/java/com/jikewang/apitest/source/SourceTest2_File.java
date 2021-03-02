@@ -1,13 +1,4 @@
-package com.jikewang.apitest.source;/**
- * Copyright (c) 2018-2028 尚硅谷 All Rights Reserved
- * <p>
- * Project: FlinkTutorial
- * Package: com.atguigu.apitest.source
- * Version: 1.0
- * <p>
- * Created by wushengran on 2020/11/7 11:48
- */
-
+package com.jikewang.apitest.source;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
@@ -23,7 +14,7 @@ public class SourceTest2_File {
         env.setParallelism(1);
 
         // 从文件读取数据
-        DataStream<String> dataStream = env.readTextFile("D:\\Projects\\BigData\\FlinkTutorial\\src\\main\\resources\\sensor.txt");
+        DataStream<String> dataStream = env.readTextFile("D:\\YouXinProjection\\JavaProjection\\flinkdemo2\\src\\main\\resources\\sensor.txt");
 
         // 打印输出
         dataStream.print();

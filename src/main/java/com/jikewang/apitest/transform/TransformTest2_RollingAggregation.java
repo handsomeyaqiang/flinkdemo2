@@ -32,7 +32,7 @@ public class TransformTest2_RollingAggregation {
         env.setParallelism(4);
 
         // 从文件读取数据
-        DataStream<String> inputStream = env.readTextFile("D:\\Projects\\BigData\\FlinkTutorial\\src\\main\\resources\\sensor.txt");
+        DataStream<String> inputStream = env.readTextFile("D:\\YouXinProjection\\JavaProjection\\flinkdemo2\\src\\main\\resources\\sensor.txt");
 
         // 转换成SensorReading类型
 //        DataStream<SensorReading> dataStream = inputStream.map(new MapFunction<String, SensorReading>() {
@@ -65,9 +65,9 @@ public class TransformTest2_RollingAggregation {
         // 滚动聚合，取当前最大的温度值
         DataStream<SensorReading> resultStream = keyedStream.maxBy("temperature");
 
-        resultStream.print("result");
-
-        keyedStream1.print("key1");
+//        resultStream.print("result");
+//
+//        keyedStream1.print("key1");
         keyedStream2.sum(0).print("key2");
         env.execute();
     }
