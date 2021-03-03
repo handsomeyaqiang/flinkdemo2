@@ -32,7 +32,7 @@ public class TableTest3_FileOutput {
 
         // 2. 表的创建：连接外部系统，读取数据
         // 读取文件
-        String filePath = "D:\\Projects\\BigData\\FlinkTutorial\\src\\main\\resources\\sensor.txt";
+        String filePath = "D:\\YouXinProjection\\JavaProjection\\flinkdemo2\\src\\main\\resources\\sensor.txt";
         tableEnv.connect( new FileSystem().path(filePath))
                 .withFormat( new Csv())
                 .withSchema( new Schema()
@@ -62,7 +62,7 @@ public class TableTest3_FileOutput {
 
         // 4. 输出到文件
         // 连接外部文件注册输出表
-        String outputPath = "D:\\Projects\\BigData\\FlinkTutorial\\src\\main\\resources\\out.txt";
+        String outputPath = "D:\\YouXinProjection\\JavaProjection\\flinkdemo2\\src\\main\\resources\\out.txt";
         tableEnv.connect( new FileSystem().path(outputPath))
                 .withFormat( new Csv())
                 .withSchema( new Schema()
@@ -75,6 +75,6 @@ public class TableTest3_FileOutput {
         resultTable.insertInto("outputTable");
 //        aggTable.insertInto("outputTable");
 
-        env.execute();
+        tableEnv.execute("");
     }
 }

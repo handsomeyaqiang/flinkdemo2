@@ -16,6 +16,8 @@ import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.types.Row;
 
+import static org.apache.flink.table.api.Expressions.$;
+
 /**
  * @ClassName: TableTest1_Example
  * @Description:
@@ -27,7 +29,7 @@ public class TableTest1_Example {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
         // 1. 读取数据
-        DataStreamSource<String> inputStream = env.readTextFile("D:\\Projects\\BigData\\FlinkTutorial\\src\\main\\resources\\sensor.txt");
+        DataStreamSource<String> inputStream = env.readTextFile("D:\\YouXinProjection\\JavaProjection\\flinkdemo2\\src\\main\\resources\\sensor.txt");
 
         // 2. 转换成POJO
         DataStream<SensorReading> dataStream = inputStream.map(line -> {
@@ -44,13 +46,14 @@ public class TableTest1_Example {
         // 5. 调用table API进行转换操作
         Table resultTable = dataTable.select("id, temperature")
                 .where("id = 'sensor_1'");
-
+        Table resultTable2 = dataTable.select($("id"), $("temperature"))
+                .where($("id").isEqual("sensor_1"));
         // 6. 执行SQL
         tableEnv.createTemporaryView("sensor", dataTable);
         String sql = "select id, temperature from sensor where id = 'sensor_1'";
         Table resultSqlTable = tableEnv.sqlQuery(sql);
 
-        tableEnv.toAppendStream(resultTable, Row.class).print("result");
+        tableEnv.toAppendStream(resultTable2, Row.class).print("result");
         tableEnv.toAppendStream(resultSqlTable, Row.class).print("sql");
 
         env.execute();

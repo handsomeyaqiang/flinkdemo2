@@ -72,6 +72,6 @@ public class TableTest4_KafkaPipeLine {
 
         resultTable.insertInto("outputTable");
 
-        env.execute();
+        tableEnv.execute("");
     }
 }
