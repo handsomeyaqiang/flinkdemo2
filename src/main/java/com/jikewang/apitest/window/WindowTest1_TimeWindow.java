@@ -2,12 +2,14 @@ package com.jikewang.apitest.window;
 import com.jikewang.apitest.beans.SensorReading;
 import org.apache.commons.collections.IteratorUtils;
 import org.apache.flink.api.common.functions.AggregateFunction;
+import org.apache.flink.api.common.functions.ReduceFunction;
 import org.apache.flink.api.java.tuple.Tuple;
 import org.apache.flink.api.java.tuple.Tuple3;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.windowing.WindowFunction;
+import org.apache.flink.streaming.api.windowing.assigners.*;
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.apache.flink.util.Collector;
@@ -41,9 +43,16 @@ public class WindowTest1_TimeWindow {
 
         // 1. 增量聚合函数
         DataStream<Integer> resultStream = dataStream.keyBy("id")
-//                .countWindow(10, 2);
-//                .window(EventTimeSessionWindows.withGap(Time.minutes(1)));
+                //计数窗口
+//                .countWindow(10, 2)
+                //session窗口
+//                .window(EventTimeSessionWindows.withGap(Time.minutes(1)))
+//                底层处理时间|事件时间滚动窗口
 //                .window(TumblingProcessingTimeWindows.of(Time.seconds(15)))
+//                .window(TumblingEventTimeWindows.of(Time.seconds(15)))
+//                底层处理时间|事件时间滑动窗口
+//                .window(SlidingProcessingTimeWindows.of(Time.seconds(15), Time.seconds(5)))
+//                .window(SlidingEventTimeWindows.of(Time.seconds(15), Time.seconds(5)))
                 .timeWindow(Time.seconds(15))
                 .aggregate(new AggregateFunction<SensorReading, Integer, Integer>() {
                     @Override

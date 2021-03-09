@@ -78,14 +78,8 @@
     </dependency>
     <dependency>
       <groupId>org.apache.flink</groupId>
-      <artifactId>flink-hbase_${flink.scala.version}</artifactId>
-      <version>${flink.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.flink</groupId>
       <artifactId>flink-jdbc_${flink.scala.version}</artifactId>
-      <version>${flink.version}</version>
+      <version>1.7.2</version>
       <scope>provided</scope>
     </dependency>
     <dependency>

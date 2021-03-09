@@ -12,6 +12,7 @@ import org.elasticsearch.client.Requests;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @ClassName: SinkTest3_Es
@@ -34,7 +35,7 @@ public class SinkTest3_Es {
         });
 
         // 定义es的连接配置
-        ArrayList<HttpHost> httpHosts = new ArrayList<>();
+        List<HttpHost> httpHosts = new ArrayList<>();
         httpHosts.add(new HttpHost("localhost", 9200));
 
         dataStream.addSink(new ElasticsearchSink.Builder<SensorReading>(httpHosts, new MyEsSinkFunction()).build());
