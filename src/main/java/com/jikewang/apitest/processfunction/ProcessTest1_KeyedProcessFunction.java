@@ -56,7 +56,7 @@ public class ProcessTest1_KeyedProcessFunction {
 //            ctx.output();
             ctx.timerService().currentProcessingTime();
             ctx.timerService().currentWatermark();
-            ctx.timerService().registerProcessingTimeTimer( ctx.timerService().currentProcessingTime() + 5000L);
+            ctx.timerService().registerProcessingTimeTimer( ctx.timerService().currentProcessingTime() + 1000L);
             tsTimerState.update(ctx.timerService().currentProcessingTime() + 1000L);
 //            ctx.timerService().registerEventTimeTimer((value.getTimestamp() + 10) * 1000L);
 //            ctx.timerService().deleteProcessingTimeTimer(tsTimerState.value());

@@ -1,13 +1,4 @@
-package com.jikewang.apitest.tableapi;/**
- * Copyright (c) 2018-2028 尚硅谷 All Rights Reserved
- * <p>
- * Project: FlinkTutorial
- * Package: com.atguigu.apitest.tableapi
- * Version: 1.0
- * <p>
- * Created by wushengran on 2020/11/13 9:40
- */
-
+package com.jikewang.apitest.tableapi;
 import com.jikewang.apitest.beans.SensorReading;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;

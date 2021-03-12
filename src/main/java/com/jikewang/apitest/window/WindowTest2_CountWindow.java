@@ -31,7 +31,7 @@ public class WindowTest2_CountWindow {
 
         // 开计数窗口测试
         SingleOutputStreamOperator<Double> avgTempResultStream = dataStream.keyBy("id")
-                .countWindow(10, 2)
+                .countWindow(10)
                 .aggregate(new MyAvgTemp());
 
         avgTempResultStream.print();

@@ -1,13 +1,4 @@
-package com.jikewang.apitest.tableapi.udf;/**
- * Copyright (c) 2018-2028 尚硅谷 All Rights Reserved
- * <p>
- * Project: FlinkTutorial
- * Package: com.atguigu.apitest.tableapi.udf
- * Version: 1.0
- * <p>
- * Created by wushengran on 2020/11/14 9:24
- */
-
+package com.jikewang.apitest.tableapi.udf;
 import com.jikewang.apitest.beans.SensorReading;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
@@ -19,7 +10,7 @@ import org.apache.flink.types.Row;
 
 /**
  * @ClassName: UdfTest1_ScalarFunction
- * @Description:
+ * @Description: 标量函数：一对一相当于map函数
  * @Author: wushengran on 2020/11/14 9:24
  * @Version: 1.0
  */
@@ -31,7 +22,7 @@ public class UdfTest1_ScalarFunction {
         StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
 
         // 1. 读取数据
-        DataStreamSource<String> inputStream = env.readTextFile("D:\\Projects\\BigData\\FlinkTutorial\\src\\main\\resources\\sensor.txt");
+        DataStreamSource<String> inputStream = env.readTextFile("D:\\YouXinProjection\\JavaProjection\\flinkdemo2\\src\\main\\resources\\sensor.txt");
 
         // 2. 转换成POJO
         DataStream<SensorReading> dataStream = inputStream.map(line -> {
@@ -46,7 +37,8 @@ public class UdfTest1_ScalarFunction {
         // 4.1 table API
         HashCode hashCode = new HashCode(23);
         // 需要在环境中注册UDF
-        tableEnv.registerFunction("hashCode", hashCode);
+//        tableEnv.registerFunction("hashCode", hashCode);
+        tableEnv.createTemporarySystemFunction("hashCode", hashCode);
         Table resultTable = sensorTable.select("id, ts, hashCode(id)");
 
         // 4.2 SQL

@@ -1,13 +1,4 @@
-package com.jikewang.apitest.tableapi.udf;/**
- * Copyright (c) 2018-2028 尚硅谷 All Rights Reserved
- * <p>
- * Project: FlinkTutorial
- * Package: com.atguigu.apitest.tableapi.udf
- * Version: 1.0
- * <p>
- * Created by wushengran on 2020/11/14 10:07
- */
-
+package com.jikewang.apitest.tableapi.udf;
 import com.jikewang.apitest.beans.SensorReading;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.streaming.api.datastream.DataStream;
@@ -20,7 +11,7 @@ import org.apache.flink.types.Row;
 
 /**
  * @ClassName: UdfTest2_TableFunction
- * @Description:
+ * @Description: 表函数：一对多，相当于flatMap函数
  * @Author: wushengran on 2020/11/14 10:07
  * @Version: 1.0
  */

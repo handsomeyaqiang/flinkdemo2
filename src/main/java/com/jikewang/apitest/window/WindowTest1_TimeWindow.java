@@ -53,7 +53,7 @@ public class WindowTest1_TimeWindow {
 //                底层处理时间|事件时间滑动窗口
 //                .window(SlidingProcessingTimeWindows.of(Time.seconds(15), Time.seconds(5)))
 //                .window(SlidingEventTimeWindows.of(Time.seconds(15), Time.seconds(5)))
-                .timeWindow(Time.seconds(15))
+                .timeWindow(Time.seconds(10),Time.seconds(3))
                 .aggregate(new AggregateFunction<SensorReading, Integer, Integer>() {
                     @Override
                     public Integer createAccumulator() {
@@ -78,7 +78,7 @@ public class WindowTest1_TimeWindow {
 
         // 2. 全窗口函数
         SingleOutputStreamOperator<Tuple3<String, Long, Integer>> resultStream2 = dataStream.keyBy("id")
-                .timeWindow(Time.seconds(15))
+                .timeWindow(Time.seconds(15), Time.seconds(2))
 //                .process(new ProcessWindowFunction<SensorReading, Object, Tuple, TimeWindow>() {
 //                })
                 .apply(new WindowFunction<SensorReading, Tuple3<String, Long, Integer>, Tuple, TimeWindow>() {
@@ -96,7 +96,7 @@ public class WindowTest1_TimeWindow {
         };
 
         SingleOutputStreamOperator<SensorReading> sumStream = dataStream.keyBy("id")
-                .timeWindow(Time.seconds(15))
+                .timeWindow(Time.seconds(15), Time.seconds(2))
 //                .trigger()
 //                .evictor()
                 .allowedLateness(Time.minutes(1))

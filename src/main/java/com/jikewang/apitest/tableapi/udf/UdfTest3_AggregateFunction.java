@@ -1,12 +1,4 @@
-package com.jikewang.apitest.tableapi.udf;/**
- * Copyright (c) 2018-2028 尚硅谷 All Rights Reserved
- * <p>
- * Project: FlinkTutorial
- * Package: com.atguigu.apitest.tableapi.udf
- * Version: 1.0
- * <p>
- * Created by wushengran on 2020/11/14 10:32
- */
+package com.jikewang.apitest.tableapi.udf;
 
 import com.jikewang.apitest.beans.SensorReading;
 import org.apache.flink.api.java.tuple.Tuple2;
