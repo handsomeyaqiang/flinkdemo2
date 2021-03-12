@@ -9,6 +9,8 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.table.functions.TableFunction;
 import org.apache.flink.types.Row;
 
+import static org.apache.flink.table.api.Expressions.$;
+
 /**
  * @ClassName: UdfTest2_TableFunction
  * @Description: 表函数：一对多，相当于flatMap函数
@@ -23,7 +25,7 @@ public class UdfTest2_TableFunction {
         StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
 
         // 1. 读取数据
-        DataStreamSource<String> inputStream = env.readTextFile("D:\\Projects\\BigData\\FlinkTutorial\\src\\main\\resources\\sensor.txt");
+        DataStreamSource<String> inputStream = env.readTextFile("D:\\YouXinProjection\\JavaProjection\\flinkdemo2\\src\\main\\resources\\sensor.txt");
 
         // 2. 转换成POJO
         DataStream<SensorReading> dataStream = inputStream.map(line -> {
@@ -39,11 +41,11 @@ public class UdfTest2_TableFunction {
         Split split = new Split("_");
 
         // 需要在环境中注册UDF
+//        tableEnv.createTemporarySystemFunction("split", split);
         tableEnv.registerFunction("split", split);
         Table resultTable = sensorTable
                 .joinLateral("split(id) as (word, length)")
                 .select("id, ts, word, length");
-
         // 4.2 SQL
         tableEnv.createTemporaryView("sensor", sensorTable);
         Table resultSqlTable = tableEnv.sqlQuery("select id, ts, word, length " +
