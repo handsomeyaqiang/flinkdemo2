@@ -227,4 +227,80 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <environment>dev</environment>
+        <!-- kafka -->
+        <kafka.bootstrap.servers>10.255.33.89:9092</kafka.bootstrap.servers>
+        <kafka.topic>logstash</kafka.topic>
+        <kafka.group.id>themis</kafka.group.id>
+        <!-- redis -->
+        <redis.cluster.nodes>
+          10.255.33.163:9001,10.255.33.163:9002,10.255.33.163:9003,10.255.33.163:9004,10.255.33.163:9005,10.255.33.163:9006
+        </redis.cluster.nodes>
+        <redis.cluster.password>Redis9001</redis.cluster.password>
+        <!-- hbase -->
+        <hbase.server.url>10.255.33.3,10.255.33.4,10.255.33.5</hbase.server.url>
+        <hbase.server.port>2181</hbase.server.port>
+        <!-- mysql -->
+        <db.driverClassName>com.mysql.jdbc.Driver</db.driverClassName>
+        <db.filters>stat</db.filters>
+        <db.initialSize>5</db.initialSize>
+        <db.maxActive>10</db.maxActive>
+        <db.minIdle>5</db.minIdle>
+        <db.maxWait>60000</db.maxWait>
+        <!--yotta-->
+        <yotta.db.url>jdbc:mysql://10.255.33.9/dev_hermes</yotta.db.url>
+        <yotta.db.username>dev</yotta.db.username>
+        <yotta.db.password>dev</yotta.db.password>
+        <!--thread-->
+        <thread.db.url>jdbc:mysql://10.255.33.7/tmp_qa_cp01</thread.db.url>
+        <thread.db.username>test</thread.db.username>
+        <thread.db.password>test@2016</thread.db.password>
+      </properties>
+    </profile>
+    <profile>
+      <id>sa</id>
+      <properties>
+        <environment>sa</environment>
+        <!-- kafka -->
+        <kafka.bootstrap.servers>172.16.2.233:9092,172.16.2.234:9092,172.16.2.235:9092,172.16.2.236:9092</kafka.bootstrap.servers>
+        <kafka.topic>ksana_oasis_db</kafka.topic>
+        <kafka.group.id>sql_test_1</kafka.group.id>
+        <!-- redis -->
+        <redis.cluster.nodes>
+          172.16.2.233:9001,172.16.2.233:9002,172.16.2.234:9001,172.16.2.234:9002,172.16.2.235:9001,172.16.2.235:9002,172.16.2.236:9001,172.16.2.236:9002
+        </redis.cluster.nodes>
+        <redis.cluster.password></redis.cluster.password>
+        <!-- hbase -->
+        <hbase.server.url>172.16.2.232,172.16.2.233,172.16.2.234,172.16.2.235,172.16.2.236</hbase.server.url>
+        <hbase.server.port>2181</hbase.server.port>
+        <!--mysql-->
+        <db.driverClassName>com.mysql.jdbc.Driver</db.driverClassName>
+        <db.filters>stat</db.filters>
+        <db.initialSize>5</db.initialSize>
+        <db.maxActive>10</db.maxActive>
+        <db.minIdle>5</db.minIdle>
+        <db.maxWait>60000</db.maxWait>
+        <!--yotta-->
+        <yotta.db.url>jdbc:mysql://172.16.2.152:3306/hermes</yotta.db.url>
+        <yotta.db.username>dwuser</yotta.db.username>
+        <yotta.db.password>m8P7sppammbsmeqJIDuP</yotta.db.password>
+        <!--thread-->
+        <thread.db.url>jdbc:mysql://172.16.2.139:3309/thread</thread.db.url>
+        <thread.db.username>dwuser</thread.db.username>
+        <thread.db.password>m8P7sppammbsmeqJIDuP</thread.db.password>
+        <!--oasis-->
+        <oasis.db.url>jdbc:mysql://172.16.2.85:3306/oasis</oasis.db.url>
+        <oasis.db.username>ksana_analyzer</oasis.db.username>
+        <oasis.db.password>rxGG2fcDYt1KF8zvB7Ml</oasis.db.password>
+      </properties>
+    </profile>
+  </profiles>
 </project>
